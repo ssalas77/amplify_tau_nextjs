@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: white;
+  --foreground: black;
+}
+
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Jost', sans-serif;
+  background-color: '#e2e8f0';
+  /* background-color: transparent; */
+}
+
+.custom-img {
+  /* background-image: url('s3://site-assets-2023/tau-logo-bg.png'); */
+  background-image: url('https://site-assets-2023.s3.us-west-1.amazonaws.com/logoHeroBG.png');
+  background-position: center;
+  background-size: contain;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -ms-background-size: contain;
+  -o-background-size: contain;
+}
+
+#bg {
+  background-position: center;
+  /* background-image: url('https://site-assets-2023.s3.us-west-1.amazonaws.com/tau-logo-bg-15.png'); */
+  background-image: url('https://site-assets-2023.s3.us-west-1.amazonaws.com/logoPageBG.png');
+  background-size: contain;
+  /* z-index: -999; */
+}
+
+#bg-dark {
+  background-position: center;
+  /* background-image: url("../assets/logoHeroBGDarkTest.png"); */
+  background-size: contain;
+  /* z-index: -999; */
+}
+
+.logo-img {
+  /* background-image: url("https://site-assets-2023.s3.us-west-1.amazonaws.com/tau-logo-main.png"); */
+  background-image: url('../assets/logos/tau-logo-main.png');
+  background-position: center;
+  background-size: contain;
+  /* z-index: -999; */
+}
+
+.hero {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  background-size: cover;
+  background-position: center;
+}
+.hero > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.hero-overlay {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  height: 100%;
+  width: 100%;
+  background-color: var(--fallback-n, oklch(var(--n) / var(--tw-bg-opacity)));
+  --tw-bg-opacity: 0.5;
+}
+
+.hero-content {
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 80rem /* 1280px */;
+  gap: 1rem /* 16px */;
+  padding: 1rem /* 16px */;
+}
+
+@media (hover: hover) {
+  .btn.glass:hover {
+    --glass-opacity: 25%;
+    --glass-border-opacity: 15%;
+  }
+}
+.btn.glass {
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-color: currentColor;
+}
+.btn.glass.btn-active {
+  --glass-opacity: 25%;
+  --glass-border-opacity: 15%;
+}
+.glass,
+.glass.btn-active {
+  border: none;
+  backdrop-filter: blur(var(--glass-blur, 40px));
+  background-color: transparent;
+  background-image: linear-gradient(
+      135deg,
+      rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
+      rgb(0 0 0 / 0%) 100%
+    ),
+    linear-gradient(
+      var(--glass-reflex-degree, 100deg),
+      rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
+      rgb(0 0 0 / 0%) 25%
+    );
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset,
+    0 0 0 2px rgb(0 0 0 / 5%);
+  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+}
+.glass,
+.glass.btn-active {
+  border: none;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(var(--glass-blur, 40px));
+  background-color: transparent;
+  background-image: linear-gradient(
+      135deg,
+      rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
+      rgb(0 0 0 / 0%) 100%
+    ),
+    linear-gradient(
+      var(--glass-reflex-degree, 100deg),
+      rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
+      rgb(0 0 0 / 0%) 25%
+    );
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset,
+    0 0 0 2px rgb(0 0 0 / 5%);
+  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+}
+@media (hover: hover) {
+  .glass.btn-active {
+    border: none;
+    backdrop-filter: blur(var(--glass-blur, 40px));
+    background-color: transparent;
+    background-image: linear-gradient(
+        135deg,
+        rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
+        rgb(0 0 0 / 0%) 100%
+      ),
+      linear-gradient(
+        var(--glass-reflex-degree, 100deg),
+        rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
+        rgb(0 0 0 / 0%) 25%
+      );
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset,
+      0 0 0 2px rgb(0 0 0 / 5%);
+    text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+  }
+}
+
+.glass-nav,
+.glass-nav.btn-active {
+  border: none;
+  backdrop-filter: blur(var(--glass-blur, 40px));
+  background-color: transparent;
+  background-image: linear-gradient(
+      135deg,
+      rgb(255 255 255 / var(--glass-opacity, 30%)) 0%,
+      rgb(0 0 0 / 0%) 100%
+    ),
+    linear-gradient(
+      var(--glass-reflex-degree, 100deg),
+      rgb(255 255 255 / var(--glass-reflex-opacity, 10%)) 25%,
+      rgb(0 0 0 / 0%) 25%
+    );
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / var(--glass-border-opacity, 10%)) inset,
+    0 0 0 2px rgb(0 0 0 / 5%);
+  text-shadow: 0 1px rgb(0 0 0 / var(--glass-text-shadow-opacity, 5%));
+}
+
+/* ========================================== */
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
