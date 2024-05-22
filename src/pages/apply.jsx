@@ -16,7 +16,7 @@ export default function Apply() {
     let file = event.target.files[0];
     let { url } = await uploadToS3(file);
 
-    console.log('successfully uploaded to S3!');
+    // console.log('successfully uploaded to S3!');
   };
 
   const onSubmit = () => {
