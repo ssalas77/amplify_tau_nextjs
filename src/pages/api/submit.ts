@@ -32,7 +32,7 @@
 //   return NextResponse.json(newSubmit, { status: 201 });
 // }
 
-
+// 'use server';
 
 import { formSchema } from '@/validationSchema';
 // import { NextRequest, NextResponse } from 'next/server';
@@ -43,7 +43,10 @@ import { z } from 'zod';
 
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -51,6 +54,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Parse and validate the request body
     const body = formSchema.parse(req.body);
+
+    console.log('Parsed body:', body);
 
     // Create a new applicant in the database
     const newSubmit = await prisma.applicant.create({
@@ -69,9 +74,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         about: body.about,
         // filePath: body.filePath,
         filePath: body.filePath ? body.filePath.path : null, // Adjust according to actual data structure
-        selectedOptions: body.selectedOptions,
+        // selectedOptions: body.selectedOptions,
+        notifyEmail: body.notifyEmail,
+        notifyPhone: body.notifyPhone,
       },
     });
+
+    console.log('New applicant stored:', newSubmit);
 
     return res.status(201).json(newSubmit);
   } catch (error) {

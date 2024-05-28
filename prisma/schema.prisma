@@ -14,21 +14,23 @@ datasource db {
 }
 
 model Applicant {
-  id              Int      @id @default(autoincrement())
-  fullName        String   @db.VarChar(64)
-  street          String   @db.VarChar(64)
-  city            String   @db.VarChar(32)
-  state           String   @db.VarChar(64)
-  zip             String   @db.VarChar(10)
-  country         String   @db.VarChar(64)
-  phone           String   @db.VarChar(10)
-  email           String   @unique @db.VarChar(255)
-  title           String   @db.VarChar(64)
-  role            String   @db.VarChar(255)
-  experience      String   @db.VarChar(255)
-  about           String   @db.VarChar(500)
-  filePath        String
-  selectedOptions String[]
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
+  fullName    String   @db.VarChar(64)
+  street      String   @db.VarChar(64)
+  city        String   @db.VarChar(32)
+  state       String   @db.VarChar(64)
+  zip         String   @db.VarChar(10)
+  country     String   @db.VarChar(64)
+  phone       String   @db.VarChar(10)
+  email       String   @unique @db.VarChar(255)
+  title       String   @db.VarChar(64)
+  role        String   @db.VarChar(255)
+  experience  String   @db.VarChar(255)
+  about       String   @db.VarChar(500)
+  filePath    String?  @db.Text
+  // selectedOptions String[]
+  notifyEmail Boolean  @default(false)
+  notifyPhone Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

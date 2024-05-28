@@ -104,23 +104,37 @@ export const formSchema = z.object({
     .string()
     .min(1, 'Please provide a valid city')
     .max(32, 'This city exceeds the allotted characters'),
+  // state: z
+  //   .string()
+  //   .refine(
+  //     (value) => stateNames.includes(value) || stateIsoCodes.includes(value),
+  //     'Invalid selection'
+  //   ),
   state: z
     .string()
     .refine(
       (value) => stateNames.includes(value) || stateIsoCodes.includes(value),
       'Invalid selection'
     ),
+  // zip: z
+  //   .string()
+  //   .min(5, 'A valid zip/postal code is required')
+  //   .max(10, 'A valid zip/postal code is required'),
   zip: z
     .string()
-    .min(5, 'A valid zip/postal code is required')
-    .max(10, 'A valid zip/postal code is required'),
+    .length(5, 'A valid zip/postal code is required')
+    .refine((value) => /^\d+$/.test(value), 'Zip code must be numeric'),
   country: z
     .string()
     .refine((value) => value === 'United States', 'Invalid selection'),
+  // phone: z
+  //   .string()
+  //   .min(10, 'Phone number must be exactly 10 digits')
+  //   .max(10, 'Phone number must be exactly 10 digits')
+  //   .refine((value) => /^\d+$/.test(value), 'Phone number must be numeric'),
   phone: z
     .string()
-    .min(10, 'Phone number must be exactly 10 digits')
-    .max(10, 'Phone number must be exactly 10 digits')
+    .length(10, 'Phone number must be exactly 10 digits')
     .refine((value) => /^\d+$/.test(value), 'Phone number must be numeric'),
   email: z.string().email('Email format is not valid'),
   title: z
@@ -153,10 +167,19 @@ export const formSchema = z.object({
     )
     .refine(
       // (value) =>
-        // value && value[0] && ACCEPTED_FILE_TYPES.includes(value[0].type),
+      // value && value[0] && ACCEPTED_FILE_TYPES.includes(value[0].type),
       (value) => value && ACCEPTED_FILE_TYPES.includes(value.type),
       'Invalid file type'
     )
     .optional(), // Apply the custome file schema
-  selectedOptions: z.array(z.string()).optional(),
+  // selectedOptions: z.array(z.string()).optional(),
+  notifyEmail: z
+  .boolean()
+  // .refine((val) => val === true, {
+  //   message: "Please choice a form of communication"
+  // }),
+  .default(false),
+  notifyPhone: z
+  .boolean()
+  .default(false),
 });
