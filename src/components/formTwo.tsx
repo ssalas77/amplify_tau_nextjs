@@ -17,6 +17,7 @@ const ApplicationForm = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -26,7 +27,7 @@ const ApplicationForm = () => {
 
   let handleFileChange = async (event: any) => {
     let file = event.target.files[0];
-    let { url } = await uploadToS3(file);
+    setValue('filePath', file);
 
     console.log('Successfully uploaded to S3!');
   };
@@ -48,18 +49,32 @@ const ApplicationForm = () => {
     return `${csvHeaders}\n${csvValues}`;
   };
 
-  const uploadCSVToS3 = async (csvData: string, filename: string) => {
-    const blob = new Blob([csvData], { type: 'text/csv' });
-    const file = new File([blob], filename, { type: 'text/csv' });
+  //   const uploadCSVToS3 = async (csvData: string, filename: string) => {
+  //     const blob = new Blob([csvData], { type: 'text/csv' });
+  //     const file = new File([blob], filename, { type: 'text/csv' });
+  //     const { url } = await uploadToS3(file);
+  //     console.log('CSV successfully uploaded to S3!', url);
+  //   };
+
+  const uploadFileToS3 = async (file: File) => {
     const { url } = await uploadToS3(file);
-    console.log('CSV successfully uploaded to S3!', url);
+    return url;
   };
 
   const onSubmit = async (data: FormData) => {
     try {
+      // Upload resume file it it exists
+      if (data.filePath && data.filePath instanceof File) {
+        const resumeUrl = await uploadFileToS3(data.filePath);
+        data.filePath = resumeUrl; // Update filePath to the S3 URL
+      }
+
+      // Convert form data to CSV and upload
       const csvData = convertToCSV(data);
-      const filename = `form-data-${Date.now()}.csv`;
-      await uploadCSVToS3(csvData, filename);
+      const csvFilename = `form-data-${Date.now()}.csv`;
+      const csvBlob = new Blob([csvData], { type: 'text/csv' });
+      const csvFile = new File([csvBlob], csvFilename, { type: 'text/csv' });
+      await uploadFileToS3(csvFile);
 
       const response = await fetch('/api/submit', {
         method: 'POST',

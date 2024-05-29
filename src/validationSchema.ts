@@ -104,22 +104,12 @@ export const formSchema = z.object({
     .string()
     .min(1, 'Please provide a valid city')
     .max(32, 'This city exceeds the allotted characters'),
-  // state: z
-  //   .string()
-  //   .refine(
-  //     (value) => stateNames.includes(value) || stateIsoCodes.includes(value),
-  //     'Invalid selection'
-  //   ),
   state: z
     .string()
     .refine(
       (value) => stateNames.includes(value) || stateIsoCodes.includes(value),
       'Invalid selection'
     ),
-  // zip: z
-  //   .string()
-  //   .min(5, 'A valid zip/postal code is required')
-  //   .max(10, 'A valid zip/postal code is required'),
   zip: z
     .string()
     .length(5, 'A valid zip/postal code is required')
@@ -127,11 +117,6 @@ export const formSchema = z.object({
   country: z
     .string()
     .refine((value) => value === 'United States', 'Invalid selection'),
-  // phone: z
-  //   .string()
-  //   .min(10, 'Phone number must be exactly 10 digits')
-  //   .max(10, 'Phone number must be exactly 10 digits')
-  //   .refine((value) => /^\d+$/.test(value), 'Phone number must be numeric'),
   phone: z
     .string()
     .length(10, 'Phone number must be exactly 10 digits')
@@ -172,14 +157,23 @@ export const formSchema = z.object({
   //     'Invalid file type'
   //   )
   //   .optional(), // Apply the custome file schema
+  filePath: z
+    .union([z.string(), z.instanceof(File)])
+    .refine((value) => {
+      if (typeof value === 'string') return true;
+      return value.size <= MAX_FILE_SIZE;
+    }, 'File size is too large')
+    .refine((value) => {
+      if (typeof value === 'string') return true;
+      return ACCEPTED_FILE_TYPES.includes(value.type);
+    }, 'Invalid file type')
+    .optional(),
   // selectedOptions: z.array(z.string()).optional(),
   notifyEmail: z
-  .boolean()
-  // .refine((val) => val === true, {
-  //   message: "Please choice a form of communication"
-  // }),
-  .default(false),
-  notifyPhone: z
-  .boolean()
-  .default(false),
+    .boolean()
+    // .refine((val) => val === true, {
+    //   message: "Please choice a form of communication"
+    // }),
+    .default(false),
+  notifyPhone: z.boolean().default(false),
 });
