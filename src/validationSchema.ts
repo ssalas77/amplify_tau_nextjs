@@ -145,33 +145,33 @@ export const formSchema = z.object({
     .string()
     .refine(
       (value) => ['contract administrator'].includes(value),
-      'Invalid selection'
+      "Select position you're applying for"
     ),
   experience: z
     .string()
     .refine(
       (value) =>
         ['one to two', 'two to four', 'four to seven', 'more'].includes(value),
-      'Invalid selection'
+      'Provide years of experience in relevant field'
     ),
   about: z
     .string()
     .min(5, 'Please provide some information about yourself')
     .max(500, 'This entry exceeds the allotted characters'),
-  filePath: z
-    .any()
-    .refine(
-      // (value) => value && value[0] && value[0].size <= MAX_FILE_SIZE,
-      (value) => value && value.size <= MAX_FILE_SIZE,
-      'File size is too large'
-    )
-    .refine(
-      // (value) =>
-      // value && value[0] && ACCEPTED_FILE_TYPES.includes(value[0].type),
-      (value) => value && ACCEPTED_FILE_TYPES.includes(value.type),
-      'Invalid file type'
-    )
-    .optional(), // Apply the custome file schema
+  // filePath: z
+  //   .any()
+  //   .refine(
+  //     // (value) => value && value[0] && value[0].size <= MAX_FILE_SIZE,
+  //     (value) => value && value.size <= MAX_FILE_SIZE,
+  //     'File size is too large'
+  //   )
+  //   .refine(
+  //     // (value) =>
+  //     // value && value[0] && ACCEPTED_FILE_TYPES.includes(value[0].type),
+  //     (value) => value && ACCEPTED_FILE_TYPES.includes(value.type),
+  //     'Invalid file type'
+  //   )
+  //   .optional(), // Apply the custome file schema
   // selectedOptions: z.array(z.string()).optional(),
   notifyEmail: z
   .boolean()

@@ -73,7 +73,7 @@ export default async function handler(
         experience: body.experience,
         about: body.about,
         // filePath: body.filePath,
-        filePath: body.filePath ? body.filePath.path : null, // Adjust according to actual data structure
+        // filePath: body.filePath ? body.filePath.path : null, // Adjust according to actual data structure
         // selectedOptions: body.selectedOptions,
         notifyEmail: body.notifyEmail,
         notifyPhone: body.notifyPhone,

@@ -27,7 +27,7 @@ model Applicant {
   role        String   @db.VarChar(255)
   experience  String   @db.VarChar(255)
   about       String   @db.VarChar(500)
-  filePath    String?  @db.Text
+  // filePath    String?  @db.Text
   // selectedOptions String[]
   notifyEmail Boolean  @default(false)
   notifyPhone Boolean  @default(false)
