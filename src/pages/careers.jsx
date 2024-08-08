@@ -120,23 +120,24 @@ export default function Careers() {
                         width={'24'}
                       /> */}
                     </div>
-                    {role.name}
+                    {/* {role.name} */}
+                    <h1>No current positions available.</h1>
                   </dt>
 
                   <dd className='mt-2 mr-5 mb-2 text-base leading-7 text-gray-900 dark:text-gray-300'>
-                    {role.description}
+                    {/* {role.description} */}
                   </dd>
                   <dd className='mt-1 mr-5 mb-2 text-base leading-7 text-gray-900 dark:text-gray-300'>
-                    {role.descriptiontwo}
+                    {/* {role.descriptiontwo} */}
                   </dd>
                   <dd className='mt-1 mr-5 mb-2 text-base leading-7 text-gray-900 dark:text-gray-300'>
-                    {role.descriptionthree}
+                    {/* {role.descriptionthree} */}
                   </dd>
                   <dd className='mt-1 mr-5 mb-2 text-base leading-7 text-gray-900 dark:text-gray-300'>
-                    {role.descriptionfour}
+                    {/* {role.descriptionfour} */}
                   </dd>
                   <dd className='mt-1 mr-5 mb-2 text-base leading-7 text-gray-900 dark:text-gray-300'>
-                    {role.descriptionfive}
+                    {/* {role.descriptionfive} */}
                   </dd>
                   {/* <div className='relative mb-2 flex'>
                     <button
@@ -151,13 +152,13 @@ export default function Careers() {
                   <Dialog.Root>
                     <Dialog.Trigger asChild>
                       <div className='relative mb-4 mt-6 flex'>
-                        <button
+                        {/* <button
                           onClick={(openModal) => handleClick(role.id)}
                           className='rounded-md bg-taublue px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75'
                           // className="text-violet11 shadow-blackA4 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none"
                         >
                           Details
-                        </button>
+                        </button> */}
                       </div>
                     </Dialog.Trigger>
                     <Dialog.Portal>
@@ -165,53 +166,53 @@ export default function Careers() {
                       <Dialog.Content className='data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[450px] lg:max-w-[800px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white dark:bg-zinc-500/95 p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none lg:overflow-y-auto overflow-y-scroll'>
                         {/* <Dialog.Title className='text-mauve12 m-0 text-[17px] font-medium'> */}
                         <Dialog.Title className='text-black dark:text-white m-0 text-[17px] font-semibold'>
-                          {roles[roleId].name}
+                          {/* {roles[roleId].name} */}
                         </Dialog.Title>
                         <h1 className='my-5 font-medium'>
                           Requirements of position
                         </h1>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirements}
+                          {/* {roles[roleId].requirements} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementstwo}
+                          {/* {roles[roleId].requirementstwo} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementsthree}
+                          {/* {roles[roleId].requirementsthree} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementsfour}
+                          {/* {roles[roleId].requirementsfour} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementsfive}
+                          {/* {roles[roleId].requirementsfive} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementssix}
+                          {/* {roles[roleId].requirementssix} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementsseven}
+                          {/* {roles[roleId].requirementsseven} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementseight}
+                          {/* {roles[roleId].requirementseight} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementsnine}
+                          {/* {roles[roleId].requirementsnine} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].requirementsten}
+                          {/* {roles[roleId].requirementsten} */}
                         </Dialog.Description>
 
                         <h1 className='my-5 font-medium'>
                           Qualifications for position
                         </h1>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].qualifications}
+                          {/* {roles[roleId].qualifications} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].qualificationstwo}
+                          {/* {roles[roleId].qualificationstwo} */}
                         </Dialog.Description>
                         <Dialog.Description className='text-gray-900 dark:text-gray-300 mt-[5px] mb-1 text-[15px] leading-normal'>
-                          {roles[roleId].qualificationsthree}
+                          {/* {roles[roleId].qualificationsthree} */}
                         </Dialog.Description>
                         {/* <Dialog.Description className='text-mauve11 mt-[10px] mb-5 text-[15px] leading-normal'>
                           {roles[roleId].requirements}
@@ -219,7 +220,7 @@ export default function Careers() {
                         <div className='mt-[25px] flex justify-end'>
                           <Dialog.Close asChild>
                             <button className='inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-taublue px-4 py-2 text-sm font-medium text-blue-900 dark:text-white hover:bg-blue-200 focus:shadow-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2'>
-                              <Link href='../apply'>Apply</Link>
+                              {/* <Link href='../apply'>Apply</Link> */}
                             </button>
                           </Dialog.Close>
                         </div>
