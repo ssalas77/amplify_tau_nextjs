@@ -9,11 +9,11 @@ import { useS3Upload } from 'next-s3-upload';
 import statesData from '../assets/data/statesData';
 import { formSchema } from '../validationSchema';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type FormData = z.infer<typeof formSchema>;
 
-const ApplicationForm = () => {
+const FormTwo = () => {
   const {
     register,
     handleSubmit,
@@ -23,11 +23,20 @@ const ApplicationForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-  let { uploadToS3 } = useS3Upload();
+  const [urls, setUrls] = useState([]);
 
-  let handleFileChange = async (event: any) => {
-    let file = event.target.files[0];
-    setValue('filePath', file);
+  const { uploadToS3 } = useS3Upload();
+
+  const handleFilesChange = async ({ target }) => {
+    const files = Array.from(target.files);
+
+    for (let index = 0; index < files.length; index++) {
+        const file = files[index];
+        const { url } = await uploadToS3(file);
+
+        setUrls(current => [...current, url]);
+    }
+    // setValue('filePath', file);
 
     console.log('Successfully uploaded to S3!');
   };
@@ -43,11 +52,11 @@ const ApplicationForm = () => {
     }
   };
 
-  const convertToCSV = (data: FormData): string => {
-    const csvHeaders = Object.keys(data).join(',');
-    const csvValues = Object.values(data).join(',');
-    return `${csvHeaders}\n${csvValues}`;
-  };
+//   const convertToCSV = (data: FormData): string => {
+//     const csvHeaders = Object.keys(data).join(',');
+//     const csvValues = Object.values(data).join(',');
+//     return `${csvHeaders}\n${csvValues}`;
+//   };
 
   //   const uploadCSVToS3 = async (csvData: string, filename: string) => {
   //     const blob = new Blob([csvData], { type: 'text/csv' });
@@ -56,25 +65,25 @@ const ApplicationForm = () => {
   //     console.log('CSV successfully uploaded to S3!', url);
   //   };
 
-  const uploadFileToS3 = async (file: File) => {
-    const { url } = await uploadToS3(file);
-    return url;
-  };
+//   const uploadFileToS3 = async (file: File) => {
+//     const { url } = await uploadToS3(file);
+//     return url;
+//   };
 
   const onSubmit = async (data: FormData) => {
     try {
       // Upload resume file it it exists
       if (data.filePath && data.filePath instanceof File) {
-        const resumeUrl = await uploadFileToS3(data.filePath);
-        data.filePath = resumeUrl; // Update filePath to the S3 URL
+        const { url } = await uploadToS3(data.filePath);
+        data.filePath = url; // Update filePath to the S3 URL
       }
 
       // Convert form data to CSV and upload
-      const csvData = convertToCSV(data);
-      const csvFilename = `form-data-${Date.now()}.csv`;
-      const csvBlob = new Blob([csvData], { type: 'text/csv' });
-      const csvFile = new File([csvBlob], csvFilename, { type: 'text/csv' });
-      await uploadFileToS3(csvFile);
+    //   const csvData = convertToCSV(data);
+    //   const csvFilename = `form-data-${Date.now()}.csv`;
+    //   const csvBlob = new Blob([csvData], { type: 'text/csv' });
+    //   const csvFile = new File([csvBlob], csvFilename, { type: 'text/csv' });
+    //   await uploadFileToS3(csvFile);
 
       const response = await fetch('/api/submit', {
         method: 'POST',
@@ -448,7 +457,7 @@ const ApplicationForm = () => {
                           name='filePath'
                           type='file'
                           className='sr-only'
-                          onChange={handleFileChange}
+                          onChange={handleFilesChange}
                         />
                       </label>
                       <p className='p-1'>or drag and drop</p>
@@ -546,4 +555,4 @@ const ApplicationForm = () => {
   );
 };
 
-export default ApplicationForm;
+export default FormTwo;

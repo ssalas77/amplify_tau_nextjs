@@ -3,6 +3,7 @@
 import Head from 'next/head';
 import PageHero from '../components/pageHero';
 import ApplicationForm from '@/components/form';
+import FormTwo from '@/components/formTwo';
 
 export default function Apply() {
 
@@ -20,7 +21,8 @@ export default function Apply() {
         heading='Apply'
         message=''
       />
-      <ApplicationForm />
+      <FormTwo />
+      {/* <ApplicationForm /> */}
     </>
   );
 }
